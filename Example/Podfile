@@ -1,0 +1,6 @@
+use_frameworks!
+
+target 'RxService_Example' do
+  pod 'RxService', :path => '../'
+
+end
