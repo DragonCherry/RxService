@@ -46,5 +46,6 @@ TODO: Add long description of the pod here.
   s.dependency 'ObjectMapper'
   s.dependency 'AlamofireImage'
   s.dependency 'ReachabilitySwift'
+  s.dependency 'SwiftARGB'
 
 end
