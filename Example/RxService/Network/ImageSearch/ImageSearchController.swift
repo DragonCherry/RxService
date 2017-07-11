@@ -24,12 +24,21 @@ class ImageSearchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.hideEmptyCells()
-        configureSearchBar()
         configureTableSource()
     }
     
-    func configureSearchBar() {
+    func configureTableSource() {
         let reachabilityService = try! DefaultReachabilityService.shared()
+        
+        // configure basic UI
+        tableView.rowHeight = 130
+        tableView.register(UINib(nibName: "ImageSearchCell", bundle: nil), forCellReuseIdentifier: kImageSearchCellReuseIdentifier)
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.tableView.deselectRow(at: indexPath, animated: true)
+                self?.searchBar.endEditing(true)
+        }).disposed(by: disposeBag)
+        
         let results = searchBar.rx.text
             .orEmpty
             .asDriver()
@@ -54,10 +63,5 @@ class ImageSearchController: UIViewController {
         results.map { $0.count != 0 }
             .drive(emptyView.rx.isHidden)
             .disposed(by: disposeBag)
-    }
-    
-    func configureTableSource() {
-        tableView.rowHeight = 130
-        tableView.register(UINib(nibName: "ImageSearchCell", bundle: nil), forCellReuseIdentifier: kImageSearchCellReuseIdentifier)
     }
 }

@@ -29,16 +29,12 @@ class ImageSearchViewModel {
     }
     
     func configureTitle(title: String?) -> Driver<String> {
-        return Observable.from(optional: title)
+        return Observable.just(title ?? "")
             .asDriver(onErrorJustReturn: "")
     }
     
     func configureImage(urlString: String?) -> Driver<UIImage> {
-        return Observable.from(optional: urlString)
-            .flatMap { Observable.from(optional: URL(string: $0)) }
-            .flatMap { url in
-                DefaultImageService.default.image(fromUrl: url, placeholder: Resource.commonPlaceholder, reachabilityService: try? DefaultReachabilityService.shared())
-            }
+        return DefaultImageService.default.image(fromString: urlString, placeholder: Resource.commonPlaceholder)
             .asDriver(onErrorJustReturn: Resource.commonPlaceholder)
     }
 }

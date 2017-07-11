@@ -25,13 +25,7 @@ class AutoReloadImageViewModel {
     }
     
     func configureImage() -> Observable<UIImage> {
-        var reachabilityService: ReachabilityService?
-        do {
-            reachabilityService = try DefaultReachabilityService.shared()
-        } catch {
-            logw("\(error)")
-        }
-        return DefaultImageService.default.image(fromUrl: model.imageUrl, placeholder: Resource.commonPlaceholder, reachabilityService: reachabilityService)
+        return DefaultImageService.default.image(fromUrl: model.imageUrl, placeholder: Resource.commonPlaceholder)
             .shareReplayLatestWhileConnected()
     }
 }

@@ -10,7 +10,8 @@ import RxCocoa
 import AlamofireImage
 
 public protocol ImageService {
-    func image(fromUrl url: URL, placeholder: UIImage, reachabilityService service: ReachabilityService?) -> Observable<UIImage>
+    func image(fromString urlString: String?, placeholder: UIImage?) -> Observable<UIImage>
+    func image(fromUrl url: URL, placeholder: UIImage?) -> Observable<UIImage>
 }
 
 public enum ImageError: Error {
@@ -24,6 +25,7 @@ open class DefaultImageService: ImageService {
     }()
     
     private let imageCache: AutoPurgingImageCache
+    private let reachabilityService = try? DefaultReachabilityService.shared()
     
     private init(memoryCapacity: UInt64 = 10 * 1024 * 1024) {
         imageCache = AutoPurgingImageCache(memoryCapacity: memoryCapacity, preferredMemoryUsageAfterPurge: memoryCapacity / 2)
@@ -40,7 +42,7 @@ open class DefaultImageService: ImageService {
         }
     }
     
-    private func _image(fromUrl url: URL, placeholder: UIImage) -> Observable<UIImage> {
+    private func _image(fromUrl url: URL, placeholder: UIImage?) -> Observable<UIImage> {
         
         return Observable.deferred {
             
@@ -59,7 +61,7 @@ open class DefaultImageService: ImageService {
                                 self.imageCache.add(image, withIdentifier: url.absoluteString)
                                 return image
                             } else {
-                                return placeholder
+                                return placeholder ?? UIImage()
                             }
                         }
                         .observeOn(MainScheduler.instance)
@@ -68,16 +70,25 @@ open class DefaultImageService: ImageService {
             }
     }
     
-    public func image(fromUrl url: URL, placeholder: UIImage, reachabilityService: ReachabilityService?) -> Observable<UIImage> {
+    public func image(fromString urlString: String?, placeholder: UIImage?) -> Observable<UIImage> {
+        guard let urlString = urlString, let url = URL(string: urlString) else {
+            return Observable.just(placeholder ?? UIImage())
+        }
+        return image(fromUrl: url, placeholder: placeholder)
+    }
+    
+    public func image(fromUrl url: URL, placeholder: UIImage?) -> Observable<UIImage> {
+        let alternative = placeholder ?? UIImage()
         if let reachabilityService = reachabilityService {
-            return _image(fromUrl: url, placeholder: placeholder)
-                .retryOnBecomesReachable(placeholder, reachabilityService: reachabilityService)
-                .startWith(placeholder)
+            return _image(fromUrl: url, placeholder: alternative)
+                .retryOnBecomesReachable(alternative, reachabilityService: reachabilityService)
+                .startWith(alternative)
         } else {
-            return _image(fromUrl: url, placeholder: placeholder)
-                .startWith(placeholder)
+            return _image(fromUrl: url, placeholder: alternative)
+                .startWith(alternative)
         }
     }
 }
+
 
 
