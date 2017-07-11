@@ -92,7 +92,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="gDi-aG-r92" kind="show" id="RxH-sE-Nh7"/>
+                                            <segue destination="n6U-Ma-XTK" kind="show" id="x0K-g6-6Kd"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="udf-6q-d3X" style="IBUITableViewCellStyleDefault" id="YXg-W8-Ta5">
@@ -102,7 +102,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="AutoReload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="udf-6q-d3X">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="ImageSearch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="udf-6q-d3X">
                                                     <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -112,7 +112,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="DYM-oM-k3C" kind="show" id="Cyy-vq-UkA"/>
+                                            <segue destination="QYC-3X-4II" kind="show" id="c1A-Fg-aGV"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="yih-sD-L2c" style="IBUITableViewCellStyleDefault" id="ut6-i6-9Ps">
@@ -143,7 +143,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sX1-jb-Izg">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="AutoReloadImage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sX1-jb-Izg">
                                                     <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -152,6 +152,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="wY5-hU-KV4" kind="show" id="Rzp-xv-lIQ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="il9-DG-60B" style="IBUITableViewCellStyleDefault" id="dDS-Rn-EvA">
                                         <rect key="frame" x="0.0" y="392" width="375" height="44"/>
@@ -256,87 +259,29 @@
             </objects>
             <point key="canvasLocation" x="60" y="-6.746626686656672"/>
         </scene>
-        <!--Reachability Service Controller-->
-        <scene sceneID="y8u-E2-hbW">
+        <!--ReachabilityService-->
+        <scene sceneID="jfo-ra-NAu">
             <objects>
-                <viewController id="gDi-aG-r92" customClass="ReachabilityServiceController" customModule="RxService_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hVC-Il-5h6"/>
-                        <viewControllerLayoutGuide type="bottom" id="18y-BY-0lC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9Vw-jM-9NO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqD-Tj-hb2">
-                                <rect key="frame" x="16" y="318" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="bCx-rm-7Fl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ZqD-Tj-hb2" secondAttribute="trailing" constant="16" id="Q2B-i4-iRS"/>
-                            <constraint firstItem="ZqD-Tj-hb2" firstAttribute="centerY" secondItem="9Vw-jM-9NO" secondAttribute="centerY" id="bnG-FN-UAf"/>
-                            <constraint firstItem="ZqD-Tj-hb2" firstAttribute="leading" secondItem="9Vw-jM-9NO" secondAttribute="leading" constant="16" id="pEH-KI-9KZ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="label" destination="ZqD-Tj-hb2" id="YIx-2o-des"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ph-K9-11Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="ReachabilityService" id="n6U-Ma-XTK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L1p-F1-142" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="889" y="-7"/>
+            <point key="canvasLocation" x="818" y="-330"/>
         </scene>
-        <!--Auto Reload Image Controller-->
-        <scene sceneID="bsf-zX-3va">
+        <!--ImageSearch-->
+        <scene sceneID="yyA-f2-kXu">
             <objects>
-                <viewController id="DYM-oM-k3C" customClass="AutoReloadImageController" customModule="RxService_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="da7-mf-wMb"/>
-                        <viewControllerLayoutGuide type="bottom" id="cD7-8G-hzN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dOe-fQ-eWq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xcq-Ik-2e7">
-                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
-                            </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Input URL for Image Link" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="36V-rt-Fsh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cPP-NC-bmm"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="36V-rt-Fsh" firstAttribute="top" secondItem="da7-mf-wMb" secondAttribute="bottom" id="9XN-oU-Ucc"/>
-                            <constraint firstAttribute="trailing" secondItem="36V-rt-Fsh" secondAttribute="trailing" id="ChO-jI-jHg"/>
-                            <constraint firstAttribute="trailing" secondItem="Xcq-Ik-2e7" secondAttribute="trailing" id="Gt4-Uz-hAG"/>
-                            <constraint firstItem="Xcq-Ik-2e7" firstAttribute="leading" secondItem="dOe-fQ-eWq" secondAttribute="leading" id="L6d-hL-Zbv"/>
-                            <constraint firstItem="Xcq-Ik-2e7" firstAttribute="top" secondItem="36V-rt-Fsh" secondAttribute="bottom" id="bUg-Ql-lSm"/>
-                            <constraint firstItem="cD7-8G-hzN" firstAttribute="top" secondItem="Xcq-Ik-2e7" secondAttribute="bottom" id="pJn-hk-Anr"/>
-                            <constraint firstItem="36V-rt-Fsh" firstAttribute="leading" secondItem="dOe-fQ-eWq" secondAttribute="leading" id="rK4-26-FJZ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="imageView" destination="Xcq-Ik-2e7" id="455-PR-Peu"/>
-                        <outlet property="textField" destination="36V-rt-Fsh" id="Bih-ao-2Af"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HXD-I1-p2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="ImageSearch" id="QYC-3X-4II" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G8A-g8-4OL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1556" y="-7.6461769115442282"/>
+            <point key="canvasLocation" x="818" y="-8"/>
+        </scene>
+        <!--AutoReloadImage-->
+        <scene sceneID="wTT-kY-TjP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AutoReloadImage" id="wY5-hU-KV4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F9o-f2-dAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="828" y="267"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o11-Em-V0X">

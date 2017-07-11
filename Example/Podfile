@@ -3,5 +3,7 @@ use_frameworks!
 target 'RxService_Example' do
   pod 'RxService', :path => '../'
   pod 'TinyLog'
-  
+  pod 'ObjectMapper'
+  pod 'RxAlamofire'
+  pod 'SwiftyJSON'
 end

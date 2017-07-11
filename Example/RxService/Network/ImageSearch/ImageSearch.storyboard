@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gqM-kO-oRm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Image Search Controller-->
+        <scene sceneID="I0G-7v-u26">
+            <objects>
+                <viewController id="gqM-kO-oRm" customClass="ImageSearchController" customModule="RxService_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Kd-Ov-Doe"/>
+                        <viewControllerLayoutGuide type="bottom" id="9kE-uN-7Kl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BYz-5f-tpi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="adE-tG-VIy">
+                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GIk-mV-JBY">
+                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfQ-Jh-1bp">
+                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GIk-mV-JBY" firstAttribute="leading" secondItem="BYz-5f-tpi" secondAttribute="leading" id="F7v-rG-15N"/>
+                            <constraint firstItem="adE-tG-VIy" firstAttribute="top" secondItem="5Kd-Ov-Doe" secondAttribute="bottom" id="Kdx-UQ-yDY"/>
+                            <constraint firstAttribute="trailing" secondItem="zfQ-Jh-1bp" secondAttribute="trailing" id="PLj-TX-khK"/>
+                            <constraint firstAttribute="trailing" secondItem="adE-tG-VIy" secondAttribute="trailing" id="PuL-Rh-SQx"/>
+                            <constraint firstItem="9kE-uN-7Kl" firstAttribute="top" secondItem="zfQ-Jh-1bp" secondAttribute="bottom" id="T6G-95-aC7"/>
+                            <constraint firstItem="GIk-mV-JBY" firstAttribute="top" secondItem="adE-tG-VIy" secondAttribute="bottom" id="cCO-EH-OUV"/>
+                            <constraint firstItem="zfQ-Jh-1bp" firstAttribute="top" secondItem="5Kd-Ov-Doe" secondAttribute="bottom" constant="56" id="fYH-Ub-FOI"/>
+                            <constraint firstItem="9kE-uN-7Kl" firstAttribute="top" secondItem="GIk-mV-JBY" secondAttribute="bottom" id="if1-0m-88S"/>
+                            <constraint firstItem="adE-tG-VIy" firstAttribute="leading" secondItem="BYz-5f-tpi" secondAttribute="leading" id="jnM-yR-up0"/>
+                            <constraint firstAttribute="trailing" secondItem="GIk-mV-JBY" secondAttribute="trailing" id="rqz-On-pVP"/>
+                            <constraint firstItem="zfQ-Jh-1bp" firstAttribute="leading" secondItem="BYz-5f-tpi" secondAttribute="leading" id="xCe-tO-vcA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emptyView" destination="zfQ-Jh-1bp" id="Ha6-lP-7e4"/>
+                        <outlet property="searchBar" destination="adE-tG-VIy" id="5i2-Z9-k61"/>
+                        <outlet property="searchDisplayController" destination="ct4-ZY-QJn" id="CVs-J6-4DL"/>
+                        <outlet property="tableView" destination="GIk-mV-JBY" id="nG3-Vu-Xhc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YlK-Pb-nFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ct4-ZY-QJn">
+                    <connections>
+                        <outlet property="delegate" destination="gqM-kO-oRm" id="13C-b6-fkk"/>
+                        <outlet property="searchContentsController" destination="gqM-kO-oRm" id="szd-dM-LlS"/>
+                        <outlet property="searchResultsDataSource" destination="gqM-kO-oRm" id="Uad-T9-5CH"/>
+                        <outlet property="searchResultsDelegate" destination="gqM-kO-oRm" id="zn0-pH-fJS"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="85.599999999999994" y="107.49625187406298"/>
+        </scene>
+    </scenes>
+</document>
