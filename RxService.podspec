@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxService'
-  s.version          = '0.5.0'
+  s.version          = '0.6.0'
   s.summary          = 'Convenience utilities & services for handling Rx-related functionality.'
 
 # This description is used to generate tags and improve search results.
@@ -46,5 +46,6 @@ TODO: Add long description of the pod here.
   s.dependency 'ObjectMapper'
   s.dependency 'AlamofireImage'
   s.dependency 'ReachabilitySwift'
+  s.dependency 'SwiftARGB'
 
 end

@@ -16,13 +16,11 @@ class ReachabilityServiceController: UIViewController {
     @IBOutlet weak var label: UILabel!
     
     let disposeBag = DisposeBag()
-    var reachabilityService: ReachabilityService?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
-            reachabilityService = try RxReachabilityService()
-            reachabilityService?.reachability
+            try DefaultReachabilityService.shared().reachability
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { (status) in
                     switch status {

@@ -92,7 +92,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="gDi-aG-r92" kind="show" id="RxH-sE-Nh7"/>
+                                            <segue destination="n6U-Ma-XTK" kind="show" id="x0K-g6-6Kd"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="udf-6q-d3X" style="IBUITableViewCellStyleDefault" id="YXg-W8-Ta5">
@@ -102,7 +102,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="udf-6q-d3X">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="ImageSearch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="udf-6q-d3X">
                                                     <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -111,6 +111,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="QYC-3X-4II" kind="show" id="c1A-Fg-aGV"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="yih-sD-L2c" style="IBUITableViewCellStyleDefault" id="ut6-i6-9Ps">
                                         <rect key="frame" x="0.0" y="276" width="375" height="44"/>
@@ -140,7 +143,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sX1-jb-Izg">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="AutoReloadImage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sX1-jb-Izg">
                                                     <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -149,6 +152,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="wY5-hU-KV4" kind="show" id="Rzp-xv-lIQ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="il9-DG-60B" style="IBUITableViewCellStyleDefault" id="dDS-Rn-EvA">
                                         <rect key="frame" x="0.0" y="392" width="375" height="44"/>
@@ -253,42 +259,29 @@
             </objects>
             <point key="canvasLocation" x="60" y="-6.746626686656672"/>
         </scene>
-        <!--Reachability Service Controller-->
-        <scene sceneID="y8u-E2-hbW">
+        <!--ReachabilityService-->
+        <scene sceneID="jfo-ra-NAu">
             <objects>
-                <viewController id="gDi-aG-r92" customClass="ReachabilityServiceController" customModule="RxService_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hVC-Il-5h6"/>
-                        <viewControllerLayoutGuide type="bottom" id="18y-BY-0lC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9Vw-jM-9NO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqD-Tj-hb2">
-                                <rect key="frame" x="16" y="318" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="bCx-rm-7Fl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ZqD-Tj-hb2" secondAttribute="trailing" constant="16" id="Q2B-i4-iRS"/>
-                            <constraint firstItem="ZqD-Tj-hb2" firstAttribute="centerY" secondItem="9Vw-jM-9NO" secondAttribute="centerY" id="bnG-FN-UAf"/>
-                            <constraint firstItem="ZqD-Tj-hb2" firstAttribute="leading" secondItem="9Vw-jM-9NO" secondAttribute="leading" constant="16" id="pEH-KI-9KZ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="label" destination="ZqD-Tj-hb2" id="YIx-2o-des"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ph-K9-11Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="ReachabilityService" id="n6U-Ma-XTK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L1p-F1-142" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="792.79999999999995" y="-7.6461769115442282"/>
+            <point key="canvasLocation" x="818" y="-330"/>
+        </scene>
+        <!--ImageSearch-->
+        <scene sceneID="yyA-f2-kXu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ImageSearch" id="QYC-3X-4II" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G8A-g8-4OL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="818" y="-8"/>
+        </scene>
+        <!--AutoReloadImage-->
+        <scene sceneID="wTT-kY-TjP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AutoReloadImage" id="wY5-hU-KV4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F9o-f2-dAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="828" y="267"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o11-Em-V0X">

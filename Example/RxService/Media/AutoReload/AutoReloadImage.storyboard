@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="l6Q-FY-UU8">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Auto Reload Image Controller-->
+        <scene sceneID="BzV-f9-lAX">
+            <objects>
+                <viewController id="l6Q-FY-UU8" customClass="AutoReloadImageController" customModule="RxService_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bKg-ni-MUv"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Q0-rr-oK4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ByA-NB-xiv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TS4-qL-iCG">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Input URL for Image Link" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8cE-va-rle">
+                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="yJT-hP-Xya"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8cE-va-rle" firstAttribute="leading" secondItem="ByA-NB-xiv" secondAttribute="leading" id="4Tj-8R-o3k"/>
+                            <constraint firstItem="TS4-qL-iCG" firstAttribute="top" secondItem="8cE-va-rle" secondAttribute="bottom" id="63e-Pi-QbJ"/>
+                            <constraint firstItem="8cE-va-rle" firstAttribute="top" secondItem="bKg-ni-MUv" secondAttribute="bottom" id="FCk-u6-v5e"/>
+                            <constraint firstAttribute="trailing" secondItem="TS4-qL-iCG" secondAttribute="trailing" id="VaD-lr-NN2"/>
+                            <constraint firstItem="TS4-qL-iCG" firstAttribute="leading" secondItem="ByA-NB-xiv" secondAttribute="leading" id="XwL-DA-5YT"/>
+                            <constraint firstAttribute="trailing" secondItem="8cE-va-rle" secondAttribute="trailing" id="onu-rh-jRC"/>
+                            <constraint firstItem="0Q0-rr-oK4" firstAttribute="top" secondItem="TS4-qL-iCG" secondAttribute="bottom" id="wvg-kO-WNr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="TS4-qL-iCG" id="5Mh-3G-Gyp"/>
+                        <outlet property="textField" destination="8cE-va-rle" id="3eu-lk-5y7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q5l-Bg-iCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="94"/>
+        </scene>
+    </scenes>
+</document>

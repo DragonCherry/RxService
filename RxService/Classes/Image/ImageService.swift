@@ -1,98 +1,94 @@
-////
-////  ImageService.swift
-////  RxService
-////
-////  Created by DragonCherry on 7/5/17.
-////
 //
-//import UIKit
-//import RxSwift
-//import RxCocoa
+//  ImageService.swift
+//  RxService
 //
-//protocol ImageService {
-//    func image(fromUrl url: URL, reachabilityService service: ReachabilityService) -> Observable<DownloadableImage>
-//}
+//  Created by DragonCherry on 7/5/17.
 //
-//class DefaultImageService: ImageService {
-//
-//    static let sharedImageService = DefaultImageService() // Singleton
-//
-//    let $: Dependencies = Dependencies.sharedDependencies
-//
-//    // 1st level cache
-//    private let _imageCache = NSCache<AnyObject, AnyObject>()
-//
-//    // 2nd level cache
-//    private let _imageDataCache = NSCache<AnyObject, AnyObject>()
-//
-//    let loadingImage = ActivityIndicator()
-//
-//    private init() {
-//        // cost is approx memory usage
-//        _imageDataCache.totalCostLimit = 10 * MB
-//
-//        _imageCache.countLimit = 20
-//    }
-//
-//    private func decodeImage(_ imageData: Data) -> Observable<Image> {
-//        return Observable.just(imageData)
-//            .observeOn($.backgroundWorkScheduler)
-//            .map { data in
-//                guard let image = Image(data: data) else {
-//                    // some error
-//                    throw apiError("Decoding image error")
-//                }
-//                return image.forceLazyImageDecompression()
-//            }
-//    }
-//
-//    private func _imageFromURL(_ url: URL) -> Observable<Image> {
-//        return Observable.deferred {
-//                let maybeImage = self._imageCache.object(forKey: url as AnyObject) as? Image
-//
-//                let decodedImage: Observable<Image>
-//
-//                // best case scenario, it's already decoded an in memory
-//                if let image = maybeImage {
-//                    decodedImage = Observable.just(image)
-//                }
-//                else {
-//                    let cachedData = self._imageDataCache.object(forKey: url as AnyObject) as? Data
-//
-//                    // does image data cache contain anything
-//                    if let cachedData = cachedData {
-//                        decodedImage = self.decodeImage(cachedData)
-//                    }
-//                    else {
-//                        // fetch from network
-//                        decodedImage = self.$.URLSession.rx.data(request: URLRequest(url: url))
-//                            .do(onNext: { data in
-//                                self._imageDataCache.setObject(data as AnyObject, forKey: url as AnyObject)
-//                            })
-//                            .flatMap(self.decodeImage)
-//                            .trackActivity(self.loadingImage)
-//                    }
-//                }
-//
-//                return decodedImage.do(onNext: { image in
-//                    self._imageCache.setObject(image, forKey: url as AnyObject)
-//                })
-//            }
-//    }
-//
-//    /**
-//    Service that tries to download image from URL.
-//
-//    In case there were some problems with network connectivity and image wasn't downloaded, automatic retry will be fired when networks becomes
-//    available.
-//
-//    After image is successfully downloaded, sequence is completed.
-//    */
-//    func imageFromURL(_ url: URL, reachabilityService: ReachabilityService) -> Observable<DownloadableImage> {
-//        return _imageFromURL(url)
-//                .map { DownloadableImage.content(image: $0) }
-//                .retryOnBecomesReachable(DownloadableImage.offlinePlaceholder, reachabilityService: reachabilityService)
-//                .startWith(.content(image: Image()))
-//    }
-//}
+
+import RxSwift
+import RxCocoa
+import AlamofireImage
+
+public protocol ImageService {
+    func image(fromString urlString: String?, placeholder: UIImage?) -> Observable<UIImage>
+    func image(fromUrl url: URL, placeholder: UIImage?) -> Observable<UIImage>
+}
+
+public enum ImageError: Error {
+    case formatError
+}
+
+open class DefaultImageService: ImageService {
+    
+    open static let `default`: ImageService = {
+        return DefaultImageService()
+    }()
+    
+    private let imageCache: AutoPurgingImageCache
+    private let reachabilityService = try? DefaultReachabilityService.shared()
+    
+    private init(memoryCapacity: UInt64 = 10 * 1024 * 1024) {
+        imageCache = AutoPurgingImageCache(memoryCapacity: memoryCapacity, preferredMemoryUsageAfterPurge: memoryCapacity / 2)
+    }
+    
+    private func decodeImage(imageData data: Data) -> Observable<UIImage> {
+        return Observable.just(data)
+            .observeOn(SharedScheduler.backgroundScheduler)
+            .map { data in
+                guard let image = UIImage(data: data) else {
+                    throw ImageError.formatError
+                }
+                return image.forceLazyImageDecompression()
+        }
+    }
+    
+    private func _image(fromUrl url: URL, placeholder: UIImage?) -> Observable<UIImage> {
+        
+        return Observable.deferred {
+            
+                let decodedImage: Observable<UIImage>
+            
+                if let image = self.imageCache.image(withIdentifier: url.absoluteString) {
+                    decodedImage = Observable.just(image)
+                } else {
+                    var request = URLRequest(url: url)
+                    request.cachePolicy = .reloadIgnoringLocalCacheData
+                    decodedImage = URLSession.shared.rx.data(request: request)
+                        .asObservable()
+                        .observeOn(SharedScheduler.backgroundScheduler)
+                        .map { (data) in
+                            if let image = UIImage(data: data) {
+                                self.imageCache.add(image, withIdentifier: url.absoluteString)
+                                return image
+                            } else {
+                                return placeholder ?? UIImage()
+                            }
+                        }
+                        .observeOn(MainScheduler.instance)
+                }
+                return decodedImage
+            }
+    }
+    
+    public func image(fromString urlString: String?, placeholder: UIImage?) -> Observable<UIImage> {
+        guard let urlString = urlString, let url = URL(string: urlString) else {
+            return Observable.just(placeholder ?? UIImage())
+        }
+        return image(fromUrl: url, placeholder: placeholder)
+    }
+    
+    public func image(fromUrl url: URL, placeholder: UIImage?) -> Observable<UIImage> {
+        let alternative = placeholder ?? UIImage()
+        if let reachabilityService = reachabilityService {
+            return _image(fromUrl: url, placeholder: alternative)
+                .retryOnBecomesReachable(alternative, reachabilityService: reachabilityService)
+                .startWith(alternative)
+        } else {
+            return _image(fromUrl: url, placeholder: alternative)
+                .startWith(alternative)
+        }
+    }
+}
+
+
 

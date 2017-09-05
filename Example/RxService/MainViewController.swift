@@ -12,6 +12,10 @@ class MainViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.hideEmptyCells()
     }
 }
 
+extension UITableView {
+    func hideEmptyCells() { tableFooterView = UIView() }
+}

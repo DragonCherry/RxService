@@ -28,6 +28,7 @@ public extension ReachabilityStatus {
 
 // MARK: - ReachabilityService
 public protocol ReachabilityService {
+    static func shared() throws -> ReachabilityService
     var reachability: Observable<ReachabilityStatus> { get }
 }
 
@@ -36,9 +37,23 @@ public enum ReachabilityServiceError: Error {
     case failedToCreate
 }
 
-// MARK: - RxReachabilityService
-open class RxReachabilityService: ReachabilityService {
+// MARK: - DefaultReachabilityService
+open class DefaultReachabilityService: ReachabilityService {
     
+    static private var defaultService: ReachabilityService?
+    public static func shared() throws -> ReachabilityService {
+        if let service = defaultService {
+            return service
+        } else {
+            do {
+                let service = try DefaultReachabilityService()
+                defaultService = service
+                return service
+            } catch {
+                throw ReachabilityServiceError.failedToCreate
+            }
+        }
+    }
     private let _reachabilitySubject: BehaviorSubject<ReachabilityStatus>
     
     open var reachability: Observable<ReachabilityStatus> {
