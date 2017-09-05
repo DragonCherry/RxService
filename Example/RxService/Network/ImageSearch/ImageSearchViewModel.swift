@@ -24,8 +24,8 @@ class ImageSearchViewModel {
         self.title = Driver.never()
         self.image = Driver.never()
         
-        self.title = self.configureTitle(title: searchResult.title)
-        self.image = self.configureImage(urlString: searchResult.imageUrl)
+        self.title = configureTitle(title: searchResult.title)
+        self.image = configureImage(urlString: searchResult.imageUrl)
     }
     
     func configureTitle(title: String?) -> Driver<String> {
